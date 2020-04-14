@@ -21,7 +21,7 @@ public class OrderService {
     public void seckill(Long productId) {
         //查询商品
         Product product = productService.getProductById(productId);
-        if (product.getStock() < 0){
+        if (product.getStock() <= 0){
             throw new RuntimeException("商品库存已售完");
         }
         //创建秒杀订单
@@ -32,7 +32,7 @@ public class OrderService {
 
         //减库存
         int productStock = productService.deductProductStock(productId);
-        if (productStock <0){
+        if (productStock <= 0){
             throw new RuntimeException("商品库存已售完");
         }
     }
